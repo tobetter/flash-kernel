@@ -35,6 +35,9 @@ write_to_flash() {
 		"Buffalo/Revogear Kurobox Pro")
 			return 1
 		;;
+		"Genesi Efika Smartbook" | "Genesi EfikaMX nettop")
+			return 1
+		;;
 		"GLAN Tank")
 			return 1
 		;;
@@ -111,6 +114,12 @@ case "$machine" in
 		if ! apt-install uboot-mkimage; then
 			error "apt-install uboot-mkimage failed"
 		fi
+	;;
+	"Genesi Efika Smartbook" | "Genesi EfikaMX nettop")
+                in-target update-initramfs -u || true
+                if ! apt-install uboot-mkimage; then
+                        error "apt-install uboot-mkimage failed"
+                fi
 	;;
 	"GLAN Tank")
 		in-target update-initramfs -u || true
