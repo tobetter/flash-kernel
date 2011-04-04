@@ -17,6 +17,9 @@ case "`archdetect`" in
 	arm*/s3c24xx)
 		exit 0
 	;;
+	arm*/mx51)
+		exit 0
+	;;
 	# Don't activate it by default
 	*)
 		exit 1
