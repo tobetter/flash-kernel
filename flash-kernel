@@ -253,20 +253,6 @@ nslu2_swap() {
 
 # somewhat RFC2822 based, but case sensitive, not tolerant to spaces etc.
 MACHINE_DB="
-Machine: Genesi EfikaMX nettop
-Kernel-Flavors: mx51
-U-Boot-Kernel-Address: 0x90007FC0
-U-Boot-Initrd-Address: 0x0
-Boot-Kernel-Path: /boot/uImage
-Boot-Initrd-Path: /boot/uInitrd
-
-Machine: Genesi Efika Smartbook
-Kernel-Flavors: mx51
-U-Boot-Kernel-Address: 0x90007FC0
-U-Boot-Initrd-Address: 0x0
-Boot-Kernel-Path: /boot/uImage
-Boot-Initrd-Path: /boot/uInitrd
-
 Machine: Buffalo Linkstation LiveV3 (LS-CHL)
 Kernel-Flavors: orion5x
 Machine-Id: 2913
@@ -306,6 +292,20 @@ Mtd-Kernel: Linux Kernel
 Mtd-Initrd: File System
 U-Boot-Kernel-Address: 0x00008000
 U-Boot-Initrd-Address: 0x00800000
+
+Machine: Genesi EfikaMX nettop
+Kernel-Flavors: mx5
+U-Boot-Kernel-Address: 0x90007FC0
+U-Boot-Initrd-Address: 0x0
+Boot-Kernel-Path: /boot/uImage
+Boot-Initrd-Path: /boot/uInitrd
+
+Machine: Genesi Efika Smartbook
+Kernel-Flavors: mx5
+U-Boot-Kernel-Address: 0x90007FC0
+U-Boot-Initrd-Address: 0x0
+Boot-Kernel-Path: /boot/uImage
+Boot-Initrd-Path: /boot/uInitrd
 
 Machine: GLAN Tank
 Kernel-Flavors: iop32x
@@ -537,7 +537,7 @@ trap cleanup_tmpdir EXIT HUP INT QUIT ILL KILL SEGV PIPE TERM
 tmpdir="$(mktemp -dt "$self.XXXXXXXX")"
 
 case "$machine" in
-	"Genesi EfikaMX nettop" | "Genesi Efika Smartbook" | "Buffalo Linkstation LiveV3 (LS-CHL)" | "Buffalo Linkstation Mini" | "Buffalo Linkstation Pro/Live" | "Buffalo/Revogear Kurobox Pro" | "D-Link DNS-323" | "HP Media Vault mv2120"  | "HP t5325 Thin Client" | "Marvell GuruPlug Reference Board" | "Marvell OpenRD Base Board" | "Marvell OpenRD Client Board" | "Marvell OpenRD Ultimate Board" | "Marvell SheevaPlug Reference Board" | "Marvell eSATA SheevaPlug Reference Board" | "QNAP TS-109/TS-209" | "QNAP TS-119/TS-219" | "QNAP TS-409" | "QNAP TS-41x" | "Seagate FreeAgent DockStar")
+	"Buffalo Linkstation LiveV3 (LS-CHL)" | "Buffalo Linkstation Mini" | "Buffalo Linkstation Pro/Live" | "Buffalo/Revogear Kurobox Pro" | "D-Link DNS-323" | "Genesi EfikaMX nettop" | "Genesi Efika Smartbook" | "HP Media Vault mv2120"  | "HP t5325 Thin Client" | "Marvell GuruPlug Reference Board" | "Marvell OpenRD Base Board" | "Marvell OpenRD Client Board" | "Marvell OpenRD Ultimate Board" | "Marvell SheevaPlug Reference Board" | "Marvell eSATA SheevaPlug Reference Board" | "QNAP TS-109/TS-209" | "QNAP TS-119/TS-219" | "QNAP TS-409" | "QNAP TS-41x" | "Seagate FreeAgent DockStar")
 		kernel="$kfile"
 		initrd="$ifile"
 		if [ -n "$machine_id" ]; then

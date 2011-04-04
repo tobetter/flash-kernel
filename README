@@ -41,8 +41,8 @@ The following systems are supported:
  - SheevaPlug
  - SheevaPlug eSATA
  - Thecus N2100
- - Efika Smartbook
- - Efika Nettop
+ - Efika SB Smartbook
+ - Efika MX Smarttop (nettop)
 
 If you would like to see support for another device, please file a bug
 report in the Debian Bug Tracking System and include all information

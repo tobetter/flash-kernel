@@ -1,11 +1,6 @@
-flash-kernel (2.41) UNRELEASED; urgency=low
-
-  * Add Efika Smartbook and Nettop support (Closes: #612376)
-
- -- Hector Oron <zumbi@debian.org>  Mon, 04 Apr 2011 13:16:36 +0100
-
 flash-kernel (2.40) UNRELEASED; urgency=low
 
+  [ Loïc Minier ]
   * Bump Standards-Version to 3.9.1.
   * Add a testsuite and run it during build; change code a bit to be more
     easily tested.
@@ -25,7 +20,10 @@ flash-kernel (2.40) UNRELEASED; urgency=low
   * Add myself to flash-kernel's Copyright and to debian/copyright; thanks
     Martin Michlmayr.
 
- -- Loïc Minier <lool@dooz.org>  Sun, 13 Mar 2011 21:53:05 +0100
+  [ Hector Oron ]
+  * Add Efika Smartbook and Nettop support (Closes: #612376)
+
+ -- Hector Oron <zumbi@debian.org>  Mon, 04 Apr 2011 16:13:12 +0100
 
 flash-kernel (2.39) unstable; urgency=low
 
