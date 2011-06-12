@@ -24,11 +24,13 @@ flash-kernel (2.40) UNRELEASED; urgency=low
   * Add armhf to architecture list (Closes: #620888)
     - add mx5 as armhf subarchitecture
   * Add myself to Uploaders field.
+  * Build depend on devio (needed for testsuite)
+  * Bump standards version
 
   [ Martin Michlmayr ]
   * Remove myself from the Uploaders field.
 
- -- Hector Oron <zumbi@debian.org>  Sun, 12 Jun 2011 13:36:53 +0100
+ -- Hector Oron <zumbi@debian.org>  Sun, 12 Jun 2011 14:30:19 +0100
 
 flash-kernel (2.39) unstable; urgency=low
 
