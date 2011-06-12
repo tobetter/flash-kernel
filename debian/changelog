@@ -1,4 +1,4 @@
-flash-kernel (2.40) UNRELEASED; urgency=low
+flash-kernel (2.40+armhf.1) unreleased; urgency=low
 
   [ Loïc Minier ]
   * Bump Standards-Version to 3.9.1.
@@ -24,7 +24,7 @@ flash-kernel (2.40) UNRELEASED; urgency=low
   * debian/control: add armhf to architecture list (Closes: #620888)
     - add mx5 as armhf subarchitecture
   * debian/control: build depend on devio (needed for testsuite)
-  * debian/control: bump standards version
+  * debian/control: bump Standards-Version to 3.9.2
   * debian/control: add myself to Uploaders field.
   * flash-kernel: add u-boot script support (Closes: #626434)
   * bootscript/bootscr.mx5: u-boot script for mx5 supported devices.
@@ -33,7 +33,7 @@ flash-kernel (2.40) UNRELEASED; urgency=low
   [ Martin Michlmayr ]
   * Remove myself from the Uploaders field.
 
- -- Hector Oron <zumbi@debian.org>  Sun, 12 Jun 2011 14:40:07 +0100
+ -- Hector Oron <zumbi@debian.org>  Sun, 12 Jun 2011 14:44:57 +0100
 
 flash-kernel (2.39) unstable; urgency=low
 
