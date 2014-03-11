@@ -5,6 +5,7 @@ flash-kernel (3.14) UNRELEASED; urgency=low
 
   [ Steve Langasek ]
   * Add support for the CuBox-i.
+  * Add support for symlinking kernels/initrds on targets that use dtb.
 
  -- Ian Campbell <ijc@hellion.org.uk>  Sat, 01 Mar 2014 01:56:36 +0000
 

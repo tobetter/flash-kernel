@@ -559,14 +559,15 @@ case "$method" in
 			mount "$boot_device" "$boot_mnt_dir"
 		fi
 		if [ -n "$boot_kernel_path" ]; then
-			boot_kernel_path="$boot_mnt_dir/$boot_kernel_path"
 			# don't mv the original kernel
 			if [ "$kernel" != "$kfile" ]; then
+				boot_kernel_path="$boot_mnt_dir/$boot_kernel_path"
 				backup_and_install "$kernel" \
 					"$boot_kernel_path"
 			else
-				# TODO add support for kernel symlink
-				:
+				kernel=${kernel#$(dirname $boot_kernel_path)/}
+				boot_kernel_path="$boot_mnt_dir/$boot_kernel_path"
+				ln -sf "$kernel" "$boot_kernel_path"
 			fi
 		elif [ -n "$kmtd" ]; then
 			flash_kernel "$tmpdir/uImage" "$kmtd" ""
@@ -581,14 +582,15 @@ case "$method" in
 			initrd="$tmpdir/uInitrd"
 		fi
 		if [ -n "$boot_initrd_path" ]; then
-			boot_initrd_path="$boot_mnt_dir/$boot_initrd_path"
 			# don't mv the original initrd
 			if [ "$initrd" != "$ifile" ]; then
+				boot_initrd_path="$boot_mnt_dir/$boot_initrd_path"
 				backup_and_install "$initrd" \
 					"$boot_initrd_path"
 			else
-				# TODO add support for initrd symlink
-				:
+				initrd=${initrd#$(dirname $boot_initrd_path)/}
+				boot_initrd_path="$boot_mnt_dir/$boot_initrd_path"
+				ln -sf "$initrd" "$boot_initrd_path"
 			fi
 		elif [ -n "$imtd" ]; then
 			ipad=0
