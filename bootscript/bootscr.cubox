@@ -1,0 +1,22 @@
+setenv ramdiskaddr 0x11800000;
+setenv ramdisk uInitrd;
+setenv file_prefix;
+for prefix in ${boot_prefixes}; do
+  echo Loading ${prefix}${ramdisk} to ${ramdiskaddr};
+  if load mmc ${mmcdev}:${mmcpart} ${ramdiskaddr} ${prefix}${ramdisk}; then
+    setenv file_prefix ${prefix};
+  fi;
+done;
+if test -z ${file_prefix}; then
+  echo No ramdisk found;
+  setenv ramdiskdaddr -;
+fi;
+setenv autobootfdt echo\ Booting\ \${boot_file}\;\ if\ test\ \${boot_file}\ =\ zImage\;\ then\ bootz\ \${loadaddr}\ \${ramdiskaddr}\ \${fdt_addr}\;\ else\ bootm\ \${loadaddr}\ \${ramdiskaddr}\ \${fdt_addr}\;\ fi;
+run autodetectfdt;
+if run loadbootenv; then
+  run importbootenv;
+fi;
+setenv bootfile zImage;
+if run loadbootfile; then
+  run mmcboot;
+fi;
