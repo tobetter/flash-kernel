@@ -4,6 +4,11 @@ flash-kernel (3.35+deb8u3) UNRELEASED; urgency=medium
   * Disable the use of modprobe and udevadm in the mtdblock() function
     while running the testsuite.
 
+  [ Ian Campbell ]
+  * Use /dev/mtdN when flashing, rather than needlessly going through the
+    mtdblock layer (which is problematic on some platforms/kernels).
+    (Closes: #794265)
+
  -- Uwe Kleine-König <ukleinek@debian.org>  Thu, 10 Mar 2016 20:27:32 +0100
 
 flash-kernel (3.35+deb8u2) stable; urgency=medium
