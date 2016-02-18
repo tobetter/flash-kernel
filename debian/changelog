@@ -1,3 +1,86 @@
+flash-kernel (3.58~bpo8+1) UNRELEASED; urgency=medium
+
+  * Rebuild for jessie-backports.
+
+ -- Ben Hutchings <ben@decadent.org.uk>  Thu, 18 Feb 2016 16:59:24 +0000
+
+flash-kernel (3.58) unstable; urgency=medium
+
+  [ Martin Michlmayr ]
+  * Add entries for Wandboard i.MX6 Dual Lite Board rev B1 and Quad
+    Board rev B1.  Thanks Heinrich Schuchardt. (Closes: #813893)
+  * Ensure FK_ETC_MACHINE isn't used when testing get_machine.
+    (Closes: #814710).
+
+ -- Christian Perrier <bubulle@debian.org>  Tue, 16 Feb 2016 07:01:25 +0100
+
+flash-kernel (3.57) unstable; urgency=medium
+
+  [ Colin Watson ]
+  * Use HTTPS for Vcs-Git URL.
+
+  [ Roger Shimizu ]
+  * Fix the install location for etc/README.dtbs
+  * Update kernel address for Buffalo Linkstation devices machine db.
+    (Closes: #810828)
+  * Update a few Buffalo Linkstation entries in machine db
+      The following device will be converted to DT in kernel 4.6:
+        - Buffalo Linkstation Pro/Live (LS-GL)
+      The following device will be supported by DT in kernel 4.6:
+        - Buffalo Linkstation LS-QVL (DT will be supported in kernel 4.6)
+      The following devicies' DT will be renamed in kernel 4.6:
+        - Buffalo Linkstation LS-VL
+        - Buffalo Linkstation LS-WSXL
+        - Buffalo Linkstation LS-WVL
+        - Buffalo Linkstation LS-WXL
+  * Update support status of Buffalo Linkstation devices in README
+
+  [ Martin Michlmayr ]
+  * Add Kernel-Flavors for Lamobo R1.  Thanks to Heinrich Schuchardt.
+    (Closes: #813927)
+  * Add new marvell kernel flavour as alternative for orion5x and
+    kirkwood.
+
+ -- Christian Perrier <bubulle@debian.org>  Fri, 12 Feb 2016 20:14:21 +0100
+
+flash-kernel (3.56) unstable; urgency=medium
+
+  [ Martin Michlmayr ]
+  * QNAP TS-109/TS-209 and TS-409: change the kernel address to be after
+    the ramdisk so the uncompressed kernel doesn't overwrite the ramdisk.
+    (Closes: #809476)
+
+  [ Vagrant Cascadian ]
+  * Update Cubieboard4 entry to generate uImage and uInitrd loadable by
+    the vendor u-boot, which doesn't support boot scripts.
+
+ -- Christian Perrier <bubulle@debian.org>  Thu, 28 Jan 2016 07:16:20 +0100
+
+flash-kernel (3.55) unstable; urgency=medium
+
+  [ Vagrant Cascadian ]
+  * Add a machine db entry for BeagleBoard-X15.
+
+ -- Christian Perrier <bubulle@debian.org>  Tue, 26 Jan 2016 09:15:32 +0100
+
+flash-kernel (3.54) unstable; urgency=medium
+
+  [ Martin Michlmayr ]
+  * Add test_db test suite to README.
+  * Remove lpae as kernel flavour from DB-MV784MP-GP since armmp-lpae
+    is listed already.
+  * Add support for Seagate NAS (2 and 4 bay) and Seagate Personal
+    Cloud (1 and 2 bay).
+
+ -- Christian Perrier <bubulle@debian.org>  Tue, 05 Jan 2016 06:51:38 +0100
+
+flash-kernel (3.53) unstable; urgency=medium
+
+  [ Vagrant Cascadian ]
+  * Add a machine db entry for Firefly-RK3288.
+
+ -- Christian Perrier <bubulle@debian.org>  Tue, 29 Dec 2015 09:30:38 +0100
+
 flash-kernel (3.52~bpo8+1) jessie-backports; urgency=medium
 
   * Rebuild for jessie-backports.

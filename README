@@ -16,8 +16,14 @@ The following systems are supported:
  - Buffalo Linkstation Live
  - Buffalo Linkstation Live, version 3 (LS-CHL)
  - Buffalo Linkstation Live with BitTorrent (LS-CHLv2)
- - Buffalo Linkstation Mini
- - Buffalo Linkstation Pro
+ - Buffalo Linkstation LS-QVL
+ - Buffalo Linkstation LS-VL
+ - Buffalo Linkstation LS-WSXL
+ - Buffalo Linkstation LS-WTGL
+ - Buffalo Linkstation LS-WVL
+ - Buffalo Linkstation LS-WXL
+ - Buffalo Linkstation Mini (LS-WSGL)
+ - Buffalo Linkstation Pro (LS-GL)
  - Buffalo Linkstation Pro (LS-XHL)
  - Buffalo/Revogear Kurobox Pro
  - D-Link DNS-323
@@ -52,6 +58,8 @@ The following systems are supported:
  - QNAP TS-410 and TS-410U Turbo NAS
  - QNAP TS-419P and TS-419U Turbo NAS
  - Seagate FreeAgent DockStar
+ - Seagate NAS (2 and 4 bay)
+ - Seagate Personal Cloud (1 and 2 bay)
  - SheevaPlug
  - SheevaPlug eSATA
  - Thecus N2100
@@ -67,6 +75,7 @@ Testsuite
 - - - - -
 
 Run the testsuite with:
+    FK_CHECKOUT=. ./test_db
     FK_CHECKOUT=. ./test_flash-kernel
     FK_CHECKOUT=. ./test_functions
 
