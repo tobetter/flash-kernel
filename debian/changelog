@@ -9,6 +9,9 @@ flash-kernel (3.35+deb8u3) UNRELEASED; urgency=medium
     mtdblock layer (which is problematic on some platforms/kernels).
     (Closes: #794265)
 
+  [ Uwe Kleine-König ]
+  * use nandwrite when writing to nand flash. (Closes: #813995)
+
  -- Uwe Kleine-König <ukleinek@debian.org>  Thu, 10 Mar 2016 20:27:32 +0100
 
 flash-kernel (3.35+deb8u2) stable; urgency=medium
