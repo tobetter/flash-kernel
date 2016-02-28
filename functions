@@ -552,17 +552,36 @@ android_flash() {
 	echo "done." >&2
 }
 
+search_for_dtb_file_in_prefix() {
+	local prefix=$1
+	local dtbdir=$(dirname "$dtb_name")
+	local dtbfile=$(basename "$dtb_name")
+
+	while true ; do
+		if [ "x$dtbdir" = "x." ] ; then
+			dtbdir=""
+		fi
+		if [ -e "$prefix/$dtbdir/$dtbfile" ] ; then
+			echo "$prefix/$dtbdir/$dtbfile"
+			return 0
+		fi
+		# We've run out of dir prefixes to strip
+		if [ "x$dtbdir" = "x" ] ; then
+			break;
+		fi
+		dtbdir=$(dirname "$dtbdir")
+	done
+	return 1
+}
+
 find_dtb_file() {
 	case "$dtb_name" in
 	/*)
 		echo "$dtb_name"
 		;;
 	*)
-		if [ -e "/etc/flash-kernel/dtbs/$dtb_name" ] ; then
-			echo "/etc/flash-kernel/dtbs/$dtb_name"
-		else
-			echo "/usr/lib/linux-image-$kvers/$dtb_name"
-		fi
+		search_for_dtb_file_in_prefix "/etc/flash-kernel/dtbs" ||
+		search_for_dtb_file_in_prefix "/usr/lib/linux-image-$kvers"
 		;;
 	esac
 }
@@ -604,7 +623,7 @@ handle_dtb() {
 		fi
 	else
 		if [ -e $dtb ]; then
-			echo "Installing $dtb_name into /boot/dtbs/$kvers/$dtb_name" >&2
+			echo "Installing $dtb into /boot/dtbs/$kvers/$dtb_name" >&2
 			mkdir -p /boot/dtbs/$kvers/$dtbdir
 			cp "$dtb" "/boot/dtbs/$kvers/$dtb_name.new"
 			backup_and_install \
