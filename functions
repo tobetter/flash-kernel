@@ -573,6 +573,7 @@ handle_dtb() {
 	fi
 
 	local dtb=$(find_dtb_file)
+	local dtbdir=$(dirname "$dtb_name")
 	if [ "x$FK_KERNEL_HOOK_SCRIPT" = "xpostrm.d" ] ; then
 		rm -f "/boot/dtbs/$kvers/$dtb_name"
 
@@ -590,6 +591,11 @@ handle_dtb() {
 			esac
 		fi
 
+		# Remove any subdir which we created
+		while [ "x$dtbdir" != "x." ] && [ -d /boot/dtbs/$kvers/$dtbdir ] ; do
+			rmdir --ignore-fail-on-non-empty /boot/dtbs/$kvers/$dtbdir
+			dtbdir=$(dirname "$dtbdir")
+		done
 		if [ -d /boot/dtbs/$kvers ] ; then
 			rmdir --ignore-fail-on-non-empty /boot/dtbs/$kvers
 		fi
@@ -599,7 +605,7 @@ handle_dtb() {
 	else
 		if [ -e $dtb ]; then
 			echo "Installing $dtb_name into /boot/dtbs/$kvers/$dtb_name" >&2
-			mkdir -p /boot/dtbs/$kvers/
+			mkdir -p /boot/dtbs/$kvers/$dtbdir
 			cp "$dtb" "/boot/dtbs/$kvers/$dtb_name.new"
 			backup_and_install \
 				"/boot/dtbs/$kvers/$dtb_name.new" \

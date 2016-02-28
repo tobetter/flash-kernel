@@ -1,3 +1,9 @@
+flash-kernel (3.60) UNRELEASED; urgency=medium
+
+  * Handle DTBs in subdirectories.
+
+ -- Ian Campbell <ijc@debian.org>  Sat, 27 Feb 2016 13:14:05 +0000
+
 flash-kernel (3.59) unstable; urgency=medium
 
   [ Uwe Kleine-König ]

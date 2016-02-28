@@ -30,7 +30,7 @@ Boot-Kernel-Path: /boot/uImage
 Boot-Initrd-Path: /boot/uInitrd
 Boot-Script-Path: /boot/boot.scr
 Required-Packages: u-boot-tools
-DTB-Id: apm-mustang.dtb
+DTB-Id: apm/apm-mustang.dtb
 
 Machine: Auxtek t004 A10s hdmi tv-stick
 Kernel-Flavors: armmp
