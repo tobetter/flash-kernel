@@ -1,8 +1,8 @@
-# Copyright (C) 2006  Joey Hess  <joeyh@debian.org>
+# Copyright (C) 2006  Joey Hess
 # Copyright (C) 2006, 2007, 2008, 2009, 2010, 2011  Martin Michlmayr <tbm@cyrius.com>
 # Copyright (C) 2011  Loïc Minier <lool@dooz.org>
 # Copyright (C) 2011  Julian Andres Klode <jak@debian.org>
-# Copyright (C) 2013-2014  Ian Campbell <ijc@hellion.org.uk>
+# Copyright (C) 2013-2016  Ian Campbell <ijc@debian.org>
 
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -337,7 +337,19 @@ write_mtd() {
 
 	# Can't really flashcp to /dev/mtd<N> when testing
 	if [ -z "${FK_TESTSUITE_RUNNING}" ]; then
-		flashcp "$input_file" "$output_mtd"
+		local flashtype=$(cat /sys/class/mtd/$base_mtd/type)
+		case "$flashtype" in
+		nand|mlc-nand)
+			flash_erase "$output_mtd" 0 0
+			nandwrite -p "$output_mtd" "$input_file"
+			;;
+		nor)
+			flashcp "$input_file" "$output_mtd"
+			;;
+		*)
+			error "unsupported flash type"
+			;;
+		esac
 	else
 		cp "$input_file" "$output_mtd"
 	fi
@@ -392,6 +404,10 @@ get_kernel_cmdline() {
         . /etc/default/flash-kernel
 	echo "$LINUX_KERNEL_CMDLINE"
 }
+get_kernel_cmdline_defaults() {
+        . /etc/default/flash-kernel
+	echo "$LINUX_KERNEL_CMDLINE_DEFAULTS"
+}
 
 mkimage_kernel() {
 	local kaddr="$1"
@@ -432,6 +448,7 @@ mkimage_script() {
 	printf "Generating boot script u-boot image... " >&2
 	sed -e "s/@@KERNEL_VERSION@@/$kvers/g" \
             -e "s!@@LINUX_KERNEL_CMDLINE@@!$(get_kernel_cmdline)!g" \
+            -e "s!@@LINUX_KERNEL_CMDLINE_DEFAULTS@@!$(get_kernel_cmdline_defaults)!g" \
             -e "/@@UBOOT_ENV_EXTRA@@/{
                   s/@@UBOOT_ENV_EXTRA@@//g
                   r $ubootenv
@@ -637,10 +654,6 @@ if [ -n "$kvers" ] ; then
 fi
 
 latest_version=$(linux-version list | linux-version sort | tail -1)
-if [ -n "$kvers" ] && [ "x$force" != "xyes" ] && [ "$kvers" != "$latest_version" ] && [ "$FK_KERNEL_HOOK_SCRIPT" = "postinst.d" ]; then
-	echo "Ignoring old or unknown version $kvers (latest is $latest_version)" >&2
-	exit 0
-fi
 
 if [ -n "$kvers" ] && [ "$FK_KERNEL_HOOK_SCRIPT" = "postrm.d" ]; then
 	echo "flash-kernel: Kernel ${kvers} has been removed." >&2
@@ -663,6 +676,13 @@ if [ "$kvers" != "$latest_version" ] && [ "x$force" = "xyes" ]; then
 	echo "flash-kernel: forcing install of ${kvers} instead of ${latest_version}." >&2
 	echo "flash-kernel: WARNING: Installing any new kernel package might override this." >&2
 else
+	if [ -n "$kvers" ] && [ "$kvers" != "$latest_version" ]; then
+		echo "Ignoring old or unknown version $kvers (latest is $latest_version)" >&2
+		if [ "$FK_KERNEL_HOOK_SCRIPT" = "postinst.d" ]; then
+			exit 0
+		fi
+		echo "Use --force if you want version $kvers." >&2
+	fi
 	kvers="$latest_version"
 	# Make sure we install the DTB for $latest_version
 	handle_dtb
@@ -700,7 +720,7 @@ if [ ! -e $kfile ] || [ ! -e $ifile ]; then
 		set -x
 		ls -l $kfile*
 		ls -l $ifile*
-	) >> /tmp/flash-kernel-no-kernel-error.log
+	) >> /tmp/flash-kernel-no-kernel-error.log 2>&1
 	error "Can't find $kfile or $ifile (see /tmp/flash-kernel-no-kernel-error.log)"
 fi
 kfilesize=$(stat -c '%s' "$kfile")

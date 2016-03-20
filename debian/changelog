@@ -1,8 +1,42 @@
-flash-kernel (3.58~bpo8+1) UNRELEASED; urgency=medium
+flash-kernel (3.60) unstable; urgency=medium
 
-  * Rebuild for jessie-backports.
+  [ Karsten Merker ]
+  * Add machine db entries for various sunxi-based systems
+    - Allwinner GT90H Quad Core Tablet (v4)
+    - Auxtek t003 A10s hdmi tv-stick
+    - Empire Electronix D709 tablet
+    - iNet-1
+    - INet-98V Rev 02
+    - NextThing C.H.I.P.
+    - Point of View Protab2-IPS9
+    - Q8 A13 Tablet
+    - Q8 A23 Tablet
+    - Q8 A33 Tablet
+    - Sinovoip BPI-M2
+    - Wits Pro A20 DKT
+    - Xunlong Orange Pi Plus
 
- -- Ben Hutchings <ben@decadent.org.uk>  Thu, 18 Feb 2016 16:59:24 +0000
+ -- Christian Perrier <bubulle@debian.org>  Tue, 01 Mar 2016 06:46:32 +0100
+
+flash-kernel (3.59) unstable; urgency=medium
+
+  [ Uwe Kleine-König ]
+  * use nandwrite when writing to nand flash. (Closes: #813995)
+
+  [ Martin Michlmayr ]
+  * Require --force when invoked by hand with a specific version which is not
+    the latest. (Closes: 807708)
+
+  [ Ian Campbell ]
+  * Support $LINUX_KERNEL_CMDLINE_DEFAULTS via /etc/defaults/flash-kernel. This
+    will be prepended to the ${bootargs} and can therefore be overridden by the
+    firmware configuration. Suggested as part of #813023.
+  * Fix debug logging intended to help with #781742.
+
+  [ Vagrant Cascadian ]
+  * Update db entry for Firefly-RK3288 to allow armmp-lpae.
+
+ -- Christian Perrier <bubulle@debian.org>  Mon, 22 Feb 2016 18:52:43 +0100
 
 flash-kernel (3.58) unstable; urgency=medium
 
