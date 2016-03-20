@@ -1,3 +1,9 @@
+flash-kernel (3.60~bpo8+1) jessie-backports; urgency=medium
+
+  * Rebuild for jessie-backports.
+
+ -- Héctor Orón Martínez <zumbi@debian.org>  Sun, 20 Mar 2016 18:56:51 +0100
+
 flash-kernel (3.60) unstable; urgency=medium
 
   [ Karsten Merker ]
