@@ -1,8 +1,125 @@
-flash-kernel (3.60~bpo8+1) jessie-backports; urgency=medium
+flash-kernel (3.70) unstable; urgency=medium
 
-  * Rebuild for jessie-backports.
+  [ Karsten Merker ]
+  * Add machine db entries for various sunxi-based systems that are
+    (at least partially) supported in kernel 4.8 and u-boot v2016.09:
+    - Allwinner R16 EVB (Parrot)
+    - INet-86DZ Rev 01
+    - Polaroid MID2407PXE03 tablet
+  * Add a machine db entry for the Olimex A33-OLinuXino (supported
+    in u-boot v2016.09 and in linux-next-20160923).
 
- -- Héctor Orón Martínez <zumbi@debian.org>  Sun, 20 Mar 2016 18:56:51 +0100
+ -- Christian Perrier <bubulle@debian.org>  Tue, 27 Sep 2016 07:02:51 +0200
+
+flash-kernel (3.69) unstable; urgency=medium
+
+  [ Vagrant Cascadian ]
+  * Add support for root device being set using PARTUUID.
+
+ -- Christian Perrier <bubulle@debian.org>  Wed, 21 Sep 2016 07:53:46 +0200
+
+flash-kernel (3.68) unstable; urgency=medium
+
+  [ Karsten Merker ]
+  * Add machine db entries for various sunxi-based systems that are
+    (at least partially) supported in kernel 4.7 and u-boot v2016.07:
+    - Colorfly E708 Q1 tablet
+    - Difrnce DIT4350
+    - Dserve DSRV9703C
+    - Polaroid MID2809PXE04 tablet
+    - Xunlong Orange Pi One
+    - Xunlong Orange Pi PC
+    - Xunlong Orange Pi 2
+  * Fix the DTB-ID for generic Allwinner-A13-based Q8-form-factor tablets.
+
+  [ Martin Michlmayr ]
+  * Handle DTBs in vendor subdirectories (as found on arm64 kernels).
+  * Add uboot-generic boot script for arm64: based on the armhf version
+    but with booti.
+  * Produce an error when the DTB cannot be found. (Closes: #833097)
+  * Add a machine db entry for NVIDIA Jetson TX1 Developer Kit.
+  * Add a machine db entry for DragonBoard 410c.
+  * Fix typos in README.
+
+ -- Christian Perrier <bubulle@debian.org>  Mon, 08 Aug 2016 07:33:38 +0200
+
+flash-kernel (3.67) unstable; urgency=medium
+
+  [ Vagrant Cascadian ]
+  * Add a machine db entry and boot script for Odroid-U3.
+
+ -- Christian Perrier <bubulle@debian.org>  Mon, 20 Jun 2016 08:20:31 +0200
+
+flash-kernel (3.66) unstable; urgency=medium
+
+  [ Karsten Merker ]
+  * Add machine db entries for various sunxi-based systems that are
+    (at least partially) supported in kernel 4.6 and u-boot v2016.05:
+    - Allwinner A83T H8Homlet Proto Dev Board v2.0
+    - Cubietech Cubietruck Plus
+    - ICnova-A20 SWAC
+    - iNet-9F Rev 03
+    - Itead Ibox A20
+    - Sinlinx SinA31s Development Board
+    - A10s-Wobo i5
+    - Yones TopTech BS1078 v2 Tablet
+
+ -- Christian Perrier <bubulle@debian.org>  Sat, 07 May 2016 08:48:55 +0200
+
+flash-kernel (3.65) unstable; urgency=medium
+
+  [ Vagrant Cascadian ]
+  * Add a machine db entry for Odroid XU4.
+
+ -- Christian Perrier <bubulle@debian.org>  Sun, 01 May 2016 08:09:09 +0200
+
+flash-kernel (3.64) unstable; urgency=medium
+
+  [ Roger Shimizu ]
+  * Fix script issue specific on a few linkstation devices.
+
+ -- Christian Perrier <bubulle@debian.org>  Thu, 21 Apr 2016 07:01:33 +0200
+
+flash-kernel (3.63) unstable; urgency=medium
+
+  [ Roger Shimizu ]
+  * Update machine db entry for "Buffalo/Revogear Kurobox Pro" to add DTB
+    support from kernel 4.5.1
+
+ -- Christian Perrier <bubulle@debian.org>  Sat, 16 Apr 2016 09:29:29 +0200
+
+flash-kernel (3.62) unstable; urgency=medium
+
+  [ Roger Shimizu ]
+  * Add <kvers> param to scripts under dtb-probe.
+  * Fix a few cases prevent script "dtb-probe/kirkwood-linkstation" from
+    running properly.
+
+  [ Vagrant Cascadian ]
+  * Add a machine db entry for Raspberry Pi 2 Model B.
+
+ -- Christian Perrier <bubulle@debian.org>  Tue, 05 Apr 2016 09:37:42 +0200
+
+flash-kernel (3.61) unstable; urgency=medium
+
+  [ Roger Shimizu ]
+  * Add myself to debian/copyright
+  * Add script dtb-probe/kirkwood-linkstation, based on
+    dtb-probe/kirkwood-qnap, to support smooth upgrade/downgrade of kernel,
+    since there's a split/rename for device tree file of a few Buffalo
+    Linkstation devices.
+  * Make use of above script to determine DTB file for listed devices:
+    - Buffalo Linkstation LS-VL
+    - Buffalo Linkstation LS-WSXL
+    - Buffalo Linkstation LS-WVL
+    - Buffalo Linkstation LS-WVL/VL
+    - Buffalo Linkstation LS-WXL
+    - Buffalo Linkstation LS-WXL/WSXL
+  * Update "DTB-Append-From" field for "Buffalo Linkstation Pro/Live",
+    since the patch of device tree is backported to sid (4.4) kernel.
+  * Update machine ID for "Buffalo Linkstation Mini (LS-WSGL)"
+
+ -- Christian Perrier <bubulle@debian.org>  Fri, 25 Mar 2016 06:46:48 +0100
 
 flash-kernel (3.60) unstable; urgency=medium
 

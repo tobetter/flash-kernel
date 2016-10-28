@@ -1,5 +1,5 @@
 # Copyright (C) 2006  Joey Hess
-# Copyright (C) 2006, 2007, 2008, 2009, 2010, 2011  Martin Michlmayr <tbm@cyrius.com>
+# Copyright (C) 2006, 2007, 2008, 2009, 2010, 2011, 2016  Martin Michlmayr <tbm@cyrius.com>
 # Copyright (C) 2011  Loïc Minier <lool@dooz.org>
 # Copyright (C) 2011  Julian Andres Klode <jak@debian.org>
 # Copyright (C) 2013-2016  Ian Campbell <ijc@debian.org>
@@ -231,7 +231,7 @@ get_dtb_name() {
 			error "dtb-probe $dtb_script_name not found"
 		fi
 
-		dtb_name=$($dtb_script)
+		dtb_name=$($dtb_script $kvers)
 		if [ $? -ne 0 ] || [ "x$dtb_name" = "x" ]; then
 			error "dtb-probe $dtb_script failed"
 		fi
@@ -241,6 +241,12 @@ get_dtb_name() {
 		;;
 	esac
 	if [ -n "$dtb_name" ] ; then
+		# DTBs on arm64 are stored in subdirs for each vendor; strip
+		# the dir away (in case someone specified it, although it's
+		# not needed).
+		# The DTB will be stored in /boot/dtbs/$kvers/ without
+		# additional subdirs.
+		dtb_name=$(basename $dtb_name)
 		echo "DTB: $dtb_name" >&2
 	fi
 }
@@ -558,11 +564,11 @@ find_dtb_file() {
 		echo "$dtb_name"
 		;;
 	*)
-		if [ -e "/etc/flash-kernel/dtbs/$dtb_name" ] ; then
-			echo "/etc/flash-kernel/dtbs/$dtb_name"
-		else
-			echo "/usr/lib/linux-image-$kvers/$dtb_name"
+		local dtb=$(find /etc/flash-kernel/dtbs -name $dtb_name 2>/dev/null | head -n 1)
+		if [ -z "$dtb" ]; then
+			dtb=$(find /usr/lib/linux-image-$kvers -name $dtb_name 2>/dev/null | head -n 1)
 		fi
+		echo $dtb
 		;;
 	esac
 }
@@ -597,8 +603,8 @@ handle_dtb() {
 			rmdir --ignore-fail-on-non-empty /boot/dtbs
 		fi
 	else
-		if [ -e $dtb ]; then
-			echo "Installing $dtb_name into /boot/dtbs/$kvers/$dtb_name" >&2
+		if [ -e "$dtb" ]; then
+			echo "Installing $dtb into /boot/dtbs/$kvers/$dtb_name" >&2
 			mkdir -p /boot/dtbs/$kvers/
 			cp "$dtb" "/boot/dtbs/$kvers/$dtb_name.new"
 			backup_and_install \
@@ -614,6 +620,8 @@ handle_dtb() {
 			# This can be used along with the unversioned
 			# vmlinuz+initrd.gz e.g. as a fallback option
 			ln -nfs "dtbs/$kvers/$dtb_name" "/boot/dtb"
+		else
+			error "Couldn't find $dtb"
 		fi
 	fi
 }
