@@ -524,7 +524,6 @@ Boot-Script-Path: /boot/boot.scr
 Required-Packages: u-boot-tools
 
 Machine: ODROID-C2
-Method: symlink
 Kernel-Flavors: arm64
 DTB-Id: amlogic/meson-gxbb-odroidc2.dtb
 U-Boot-Kernel-Address: 0x11000000
