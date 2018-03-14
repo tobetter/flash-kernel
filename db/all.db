@@ -515,15 +515,24 @@ Required-Packages: u-boot-tools
 Machine: Hardkernel ODROID-C2
 Kernel-Flavors: arm64
 DTB-Id: amlogic/meson-gxbb-odroidc2.dtb
-Boot-Script-Path: /boot/boot.scr
+U-Boot-Kernel-Address: 0x11000000
+U-Boot-Initrd-Address: 0x15000000
 U-Boot-Script-Name: bootscr.uboot-generic
+Boot-Kernel-Path: /boot/uImage
+Boot-Initrd-Path: /boot/uInitrd
+Boot-Script-Path: /boot/boot.scr
 Required-Packages: u-boot-tools
 
 Machine: ODROID-C2
+Method: symlink
 Kernel-Flavors: arm64
 DTB-Id: amlogic/meson-gxbb-odroidc2.dtb
-Boot-Script-Path: /boot/boot.scr
+U-Boot-Kernel-Address: 0x11000000
+U-Boot-Initrd-Address: 0x15000000
 U-Boot-Script-Name: bootscr.uboot-generic
+Boot-Kernel-Path: /boot/uImage
+Boot-Initrd-Path: /boot/uInitrd
+Boot-Script-Path: /boot/boot.scr
 Required-Packages: u-boot-tools
 
 Machine: Hardkernel ODROID-U3 board based on Exynos4412
