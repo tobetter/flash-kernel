@@ -516,7 +516,7 @@ Machine: Hardkernel ODROID-C2
 Kernel-Flavors: arm64
 DTB-Id: amlogic/meson-gxbb-odroidc2.dtb
 Boot-Script-Path: /boot/boot.scr
-U-Boot-Script-Name: bootscr.uboot-generic
+U-Boot-Script-Name: bootscr.odroid-c2
 Required-Packages: u-boot-tools
 
 Machine: Hardkernel ODROID-U3 board based on Exynos4412
@@ -530,7 +530,7 @@ Machine: Hardkernel Odroid XU4
 Kernel-Flavors: armmp armmp-lpae
 DTB-Id: exynos5422-odroidxu4.dtb
 Boot-Script-Path: /boot/boot.scr
-U-Boot-Script-Name: bootscr.uboot-generic
+U-Boot-Script-Name: bootscr.odroid-xu4
 Required-Packages: u-boot-tools
 
 Machine: HP Media Vault mv2120
