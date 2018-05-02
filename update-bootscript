@@ -1,0 +1,55 @@
+#!/bin/sh
+
+# Copyright (C) 2018  Dongjin Kim <tobetter@gmail.com>
+
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301,
+# USA.
+
+set -e
+
+FK_DIR="/usr/share/flash-kernel"
+
+main() {
+kvers="$1"
+
+tmpdir=""
+cleanups() {
+	rm -rf "$tmpdir"
+}
+trap cleanups EXIT HUP INT QUIT ILL KILL SEGV PIPE TERM
+self="$(basename "$0")"
+tmpdir="$(mktemp -dt "$self.XXXXXXXX")"
+
+. "${FK_CHECKOUT:-$FK_DIR}/functions"
+
+get_machine
+
+mkarch="$(get_mkimage_architecture "$kvers")"
+usaddr="$(get_machine_field "$machine" "U-Boot-Script-Address")" || :
+usname="$(get_machine_field "$machine" "U-Boot-Script-Name")" || :
+boot_script_path="$(get_machine_field "$machine" "Boot-Script-Path")"
+
+boot_script_path="$boot_mnt_dir/$boot_script_path"
+boot_script="$tmpdir/bootscript"
+
+do_update_bootscript "$boot_script" "$boot_script_path"
+}
+
+if [ $(id -u) -ne 0 ]; then
+	echo "Please run as root"
+	exit
+fi
+
+main "$(uname -r)"

@@ -492,6 +492,19 @@ mkimage_script() {
 	echo "done." >&2
 }
 
+do_update_bootscript() {
+	local boot_script="$1"
+	local boot_script_path="$2"
+	for script in $usname ; do
+		echo "\n#\n# flash-kernel: $script\n#\n" >> "$boot_script"
+		cat "$BOOTSCRIPTS_DIR/$script" >> "$boot_script"
+	done
+	mkimage_script "$usaddr" "boot script" "$boot_script" \
+		"$tmpdir/boot.scr"
+	boot_script="$tmpdir/boot.scr"
+	backup_and_install "$boot_script" "$boot_script_path"
+}
+
 mkimage_multi() {
 	local maddr="$1"
 	local mdesc="$2"
@@ -978,14 +991,7 @@ case "$method" in
 		if [ -n "$boot_script_path" ]; then
 			boot_script_path="$boot_mnt_dir/$boot_script_path"
 			boot_script="$tmpdir/bootscript"
-			for script in $usname ; do
-				echo "\n#\n# flash-kernel: $script\n#\n" >> "$boot_script"
-				cat "$BOOTSCRIPTS_DIR/$script" >> "$boot_script"
-			done
-			mkimage_script "$usaddr" "boot script" "$boot_script" \
-				"$tmpdir/boot.scr"
-			boot_script="$tmpdir/boot.scr"
-			backup_and_install "$boot_script" "$boot_script_path"
+			do_update_bootscript "$boot_script" "$boot_script_path"
 		fi
 		if [ -n "$boot_dtb_path" ] && [ "$dtb_append" != "no" ]; then
 			boot_dtb_path="$boot_mnt_dir/$boot_dtb_path"
