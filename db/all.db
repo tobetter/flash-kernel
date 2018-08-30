@@ -533,6 +533,20 @@ Boot-Script-Path: /boot/boot.scr
 U-Boot-Script-Name: bootscr.odroid-c2
 Required-Packages: u-boot-tools
 
+Machine: Hardkernel ODROID-C3
+Kernel-Flavors: arm64
+DTB-Id: amlogic/s905d2_odroidc3.dtb
+Boot-Script-Path: /boot/boot.scr
+U-Boot-Script-Name: bootscr.odroid-c3
+Required-Packages: u-boot-tools
+
+Machine: Hardkernel ODROID-N2
+Kernel-Flavors: arm64
+DTB-Id: amlogic/s922d_odroidn2.dtb
+Boot-Script-Path: /boot/boot.scr
+U-Boot-Script-Name: bootscr.odroid-n2
+Required-Packages: u-boot-tools
+
 Machine: Hardkernel ODROID-U3 board based on Exynos4412
 Kernel-Flavors: armmp armmp-lpae
 DTB-Id: exynos4412-odroidu3.dtb
