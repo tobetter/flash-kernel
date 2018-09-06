@@ -24,6 +24,11 @@ findfs () {
 	mount | grep "on /target${1%/} " | tail -n1 | cut -d' ' -f1
 }
 
+root_cmdline() {
+	uuid=$(blkid --output export $(findfs /) | grep ^UUID)
+	[ "$uuid" != "" ] && echo "root=$uuid rootwait ro"
+}
+
 tac () {
 	sed '1!G;h;$!d'
 }
@@ -46,7 +51,7 @@ if [ -e /target/etc/default/fsck ]; then
 	sed -i -e "s/^#FSCKFIX=no$/FSCKFIX=yes/" -e "s/^FSCKFIX=no$/FSCKFIX=yes/" /target/etc/default/fsck || true
 fi
 
-def_params="@DEFAULT_CMDLINE@"
+def_params="$(root_cmdline) @DEFAULT_CMDLINE@"
 # reverse them so we prefix them in the right order
 rev_def_params="$(echo $def_params | tr ' ' '\n' | tac)"
 user_params=$(user-params) || true
