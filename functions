@@ -601,6 +601,15 @@ android_flash() {
 
 find_dtb_file() {
 	local dtb
+	local dir=$PWD/arch/arm64/boot/dts/$dtb_dir
+	if [ -d "$dir" ]; then
+		dtb=$(find "$dir" -name $dtb_name 2>/dev/null | head -n 1)
+		if [ -f "$dtb" ]; then
+			echo "$dtb"
+			return
+		fi
+	fi
+
 	case "$dtb_dir" in
 	/*)
 		dtb="$dtb_dir/$dtb_name"
