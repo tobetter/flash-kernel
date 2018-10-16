@@ -18,11 +18,11 @@ if test -n "${console}"; then
   setenv bootargs "${bootargs} console=${console}"
 fi
 
-setenv bootargs @@LINUX_KERNEL_CMDLINE_DEFAULTS@@ ${bootargs} @@LINUX_KERNEL_CMDLINE@@
+setenv bootargs "@@LINUX_KERNEL_CMDLINE_DEFAULTS@@ ${bootargs} @@LINUX_KERNEL_CMDLINE@@"
 @@UBOOT_ENV_EXTRA@@
 
 if test -z "${fk_kvers}"; then
-   setenv fk_kvers '@@KERNEL_VERSION@@'
+   setenv fk_kvers "@@KERNEL_VERSION@@"
 fi
 
 # Hack to set kernel load address for Linux kernel v3.16.56 only
