@@ -14,12 +14,13 @@
 #
 # The uboot must support the booti and generic filesystem load commands.
 
+setenv bootargs "@@LINUX_KERNEL_CMDLINE_DEFAULTS@@ ${bootargs} @@LINUX_KERNEL_CMDLINE@@"
+
+@@UBOOT_ENV_EXTRA@@
+
 if test -n "${console}"; then
   setenv bootargs "${bootargs} console=${console}"
 fi
-
-setenv bootargs "@@LINUX_KERNEL_CMDLINE_DEFAULTS@@ ${bootargs} @@LINUX_KERNEL_CMDLINE@@"
-@@UBOOT_ENV_EXTRA@@
 
 if test -z "${fk_kvers}"; then
    setenv fk_kvers "@@KERNEL_VERSION@@"

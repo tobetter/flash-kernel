@@ -1,4 +1,10 @@
-flash-kernel (50:3.97-1) unstable; urgency=medium
+flash-kernel (5:3.97-2) unstable; urgency=medium
+
+  * ODROID: functions: add to support subdir for U-boot env
+
+ -- Dongjin Kim <tobetter@gmail.com>  Mon, 09 Sep 2019 16:56:14 +0000
+
+flash-kernel (5:3.97-1) unstable; urgency=medium
 
   * BUMP Hardkernel's Debian package number
 

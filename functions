@@ -298,9 +298,22 @@ gen_kernel() {
 	} >"$output"
 }
 
+ubootenv_by_kvers() {
+	case "$1" in
+		*-odroid-upstream-*)
+			echo "upstream"
+			;;
+		*4.9.*-odroidn2-*)
+			echo "4.9.y"
+			;;
+	esac
+}
+
 gen_preboot() {
-	PRESTUBDIRS="/etc/flash-kernel/preboot.d /usr/share/flash-kernel/preboot.d"
-	PRESTUBS="$(find $PRESTUBDIRS -type f -regex '.*/[0-9a-zA-Z_-]+' -printf '%f\n' | LC_ALL=C sort -u)"
+	local envdir=$(ubootenv_by_kvers $kvers)
+
+	PRESTUBDIRS="/etc/flash-kernel/preboot.d/$envdir /usr/share/flash-kernel/preboot.d/$envdir"
+	PRESTUBS="$(find $PRESTUBDIRS -type f -regex '.*/[0-9a-zA-Z_-]+' -printf '%f\n' 2>/dev/null | LC_ALL=C sort -u)"
 	for file in $PRESTUBS; do
 		for dir in $PRESTUBDIRS; do
 			if [ -f $dir/$file ]; then
@@ -312,8 +325,11 @@ gen_preboot() {
 }
 
 gen_ubootenv() {
-	ENVSTUBDIRS="/etc/flash-kernel/ubootenv.d /usr/share/flash-kernel/ubootenv.d"
-	ENVSTUBS="$(find $ENVSTUBDIRS -type f -regex '.*/[0-9a-zA-Z_-]+' -printf '%f\n' | LC_ALL=C sort -u)"
+	local envdir=$(ubootenv_by_kvers $kvers)
+
+	ENVSTUBDIRS="/etc/flash-kernel/ubootenv.d/$envdir /usr/share/flash-kernel/ubootenv.d/$envdir"
+	ENVSTUBS="$(find $ENVSTUBDIRS -type f -regex '.*/[0-9a-zA-Z_-]+' -printf '%f\n' 2>/dev/null | LC_ALL=C sort -u)"
+
 	for file in $ENVSTUBS; do
 		for dir in $ENVSTUBDIRS; do
 			if [ -f $dir/$file ]; then
