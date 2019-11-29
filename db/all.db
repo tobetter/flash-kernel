@@ -568,7 +568,7 @@ Machine: Hardkernel Odroid XU4
 Kernel-Flavors: armmp armmp-lpae
 DTB-Id: exynos5422-odroidxu4.dtb
 Boot-Script-Path: /boot/boot.scr
-U-Boot-Script-Name: bootscr.uboot-generic
+U-Boot-Script-Name: bootscr.odroid-exynos5422
 Required-Packages: u-boot-tools
 
 Machine: Helios4
