@@ -300,11 +300,11 @@ gen_kernel() {
 
 ubootenv_by_kvers() {
 	case "$1" in
-		*-odroid-upstream-*)
-			echo "upstream"
-			;;
 		*4.9.*-odroidn2-*)
 			echo "4.9.y"
+			;;
+		*)
+			echo "upstream"
 			;;
 	esac
 }
