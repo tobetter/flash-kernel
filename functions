@@ -300,7 +300,7 @@ gen_kernel() {
 
 ubootenv_by_kvers() {
 	case "$1" in
-		*4.9.*-odroidn2-*)
+		*4.9.*-odroidn2-* | *4.9.*-odroidg12-*)
 			echo "4.9.y"
 			;;
 		*)
