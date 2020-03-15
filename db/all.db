@@ -534,11 +534,11 @@ U-Boot-Script-Name: bootscr.odroid-c2
 Required-Packages: u-boot-tools
 Bootloader-Sets-Incorrect-Root: yes
 
-Machine: Hardkernel ODROID-C3
+Machine: Hardkernel ODROID-C4
 Kernel-Flavors: arm64
-DTB-Id: amlogic/meson64_odroidc3.dtb
+DTB-Id: amlogic/meson64_odroidc4.dtb
 Boot-Script-Path: /boot/boot.scr
-U-Boot-Script-Name: bootscr.odroid-c3
+U-Boot-Script-Name: bootscr.odroid-c4
 Required-Packages: u-boot-tools
 Bootloader-Sets-Incorrect-Root: yes
 
