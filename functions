@@ -473,6 +473,12 @@ mkimage_initrd() {
 	echo "done." >&2
 }
 
+get_os_name() {
+	if [ -f /etc/os-release ]; then
+		grep ^PRETTY_NAME /etc/os-release | cut -d'=' -f2
+	fi
+}
+
 mkimage_script() {
 	local saddr="$1"
 	local sdesc="$2"
@@ -495,6 +501,7 @@ mkimage_script() {
 	sed -e "s/@@KERNEL_VERSION@@/$kvers/g" \
             -e "s!@@LINUX_KERNEL_CMDLINE@@!$(get_kernel_cmdline)!g" \
             -e "s!@@LINUX_KERNEL_CMDLINE_DEFAULTS@@!$(get_kernel_cmdline_defaults)!g" \
+            -e "s/@@PETITBOOT_LABEL@@/setenv bootlabel $(get_os_name)/g" \
             -e "/@@UBOOT_ENV_EXTRA@@/{
                   s/@@UBOOT_ENV_EXTRA@@//g
                   r $ubootenv
