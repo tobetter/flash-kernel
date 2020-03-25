@@ -303,6 +303,9 @@ ubootenv_by_kvers() {
 		*4.9.*-odroidn2-* | *4.9.*-odroidg12-*)
 			echo "4.9.y"
 			;;
+		*4.4.*-odroidgo2-*)
+			echo "4.4.y"
+			;;
 		*)
 			echo "upstream"
 			;;
