@@ -542,6 +542,14 @@ U-Boot-Script-Name: bootscr.odroid-g12
 Required-Packages: u-boot-tools
 Bootloader-Sets-Incorrect-Root: yes
 
+Machine: Hardkernel ODROID-HC4
+Kernel-Flavors: arm64
+DTB-Id: amlogic/meson64_odroidhc4.dtb
+Boot-Script-Path: /boot/boot.scr
+U-Boot-Script-Name: bootscr.odroid-g12
+Required-Packages: u-boot-tools
+Bootloader-Sets-Incorrect-Root: yes
+
 Machine: Hardkernel ODROID-GO2
 Kernel-Flavors: arm64
 DTB-Id: rockchip/rk3326-odroidgo2-linux.dtb
