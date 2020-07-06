@@ -558,6 +558,14 @@ U-Boot-Script-Name: bootscr.odroid-n2
 Required-Packages: u-boot-tools
 Bootloader-Sets-Incorrect-Root: yes
 
+Machine: Hardkernel ODROID-N2Plus
+Kernel-Flavors: arm64
+DTB-Id: amlogic/meson64_odroidn2_plus.dtb
+Boot-Script-Path: /boot/boot.scr
+U-Boot-Script-Name: bootscr.odroid-n2
+Required-Packages: u-boot-tools
+Bootloader-Sets-Incorrect-Root: yes
+
 Machine: Hardkernel ODROID-U3 board based on Exynos4412
 Kernel-Flavors: armmp armmp-lpae
 DTB-Id: exynos4412-odroidu3.dtb
