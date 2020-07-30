@@ -36,7 +36,7 @@ fi
 # lend itself to removing this duplication.
 
 if test -n "${fdtfile}"; then
-   setenv fdtpath dtbs/${fk_kvers}/${fdtfile}
+   setenv fdtpath dtbs/${fk_kvers}/amlogic/${fdtfile}
 else
    setenv fdtpath dtb-${fk_kvers}
 fi
