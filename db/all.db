@@ -538,7 +538,7 @@ Machine: Hardkernel ODROID-C4
 Kernel-Flavors: arm64
 DTB-Id: amlogic/meson64_odroidc4.dtb
 Boot-Script-Path: /boot/boot.scr
-U-Boot-Script-Name: bootscr.odroid-c4
+U-Boot-Script-Name: bootscr.odroid-g12
 Required-Packages: u-boot-tools
 Bootloader-Sets-Incorrect-Root: yes
 
@@ -554,7 +554,7 @@ Machine: Hardkernel ODROID-N2
 Kernel-Flavors: arm64
 DTB-Id: amlogic/meson64_odroidn2.dtb
 Boot-Script-Path: /boot/boot.scr
-U-Boot-Script-Name: bootscr.odroid-n2
+U-Boot-Script-Name: bootscr.odroid-g12
 Required-Packages: u-boot-tools
 Bootloader-Sets-Incorrect-Root: yes
 
@@ -562,7 +562,7 @@ Machine: Hardkernel ODROID-N2Plus
 Kernel-Flavors: arm64
 DTB-Id: amlogic/meson64_odroidn2_plus.dtb
 Boot-Script-Path: /boot/boot.scr
-U-Boot-Script-Name: bootscr.odroid-n2
+U-Boot-Script-Name: bootscr.odroid-g12
 Required-Packages: u-boot-tools
 Bootloader-Sets-Incorrect-Root: yes
 
