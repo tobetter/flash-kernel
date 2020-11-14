@@ -30,6 +30,8 @@ case "$1" in
 		merge_debconf_into_conf "$tmp_default_fk" \
 			LINUX_KERNEL_CMDLINE flash-kernel/linux_cmdline
 
+		cp -f ${tmp_default_fk} /etc/default/flash-kernel
+
 		ucf --three-way --debconf-ok ${tmp_default_fk} \
 			/etc/default/flash-kernel
 		ucfr flash-kernel /etc/default/flash-kernel
