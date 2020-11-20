@@ -306,7 +306,7 @@ ubootenv_by_kvers() {
 		*4.4.*-odroidgo2-*)
 			echo "4.4.y"
 			;;
-		*-odroid-arm64)
+		*-odroid-arm64 | *-odroid-panfrost-arm64)
 			echo "upstream"
 			;;
 	esac
